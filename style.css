@@ -4,6 +4,7 @@ body {
   margin: 0;
   line-height: 1.6;
   color: #333;
+  scroll-behavior: smooth;
 }
 
 /* Header */
@@ -71,27 +72,37 @@ nav a:hover {
   border-radius: 8px;
   width: 250px;
   box-shadow: 0 0 10px rgba(0,0,0,0.1);
-  transition: transform 0.3s;
+  transition: transform 0.3s, box-shadow 0.3s;
   text-align: center;
 }
 .product-card:hover {
-  transform: translateY(-5px);
+  transform: translateY(-8px) scale(1.02);
+  box-shadow: 0 8px 20px rgba(0,0,0,0.15);
 }
 .product-card img {
   width: 100%;
   height: auto;
 }
+.product-card h3 {
+  font-size: 1.1rem;
+  word-wrap: break-word;
+  overflow-wrap: break-word;
+}
 .details-btn {
   background: #007bff;
   color: white;
   border: none;
-  padding: 0.5rem 1rem;
+  padding: 0.6rem 1.2rem;
   cursor: pointer;
-  margin-top: 0.5rem;
+  margin-top: 0.7rem;
   border-radius: 4px;
+  font-weight: bold;
+  box-shadow: 0 2px 5px rgba(0,0,0,0.15);
+  transition: background 0.3s, transform 0.3s;
 }
 .details-btn:hover {
   background: #0056b3;
+  transform: scale(1.05);
 }
 .price {
   font-weight: bold;
@@ -118,13 +129,14 @@ form label {
 }
 form input,
 form textarea {
-  padding: 0.5rem;
+  padding: 0.8rem;
   border: 1px solid #ccc;
   border-radius: 4px;
+  font-size: 1rem;
 }
 form button {
   margin-top: 1rem;
-  padding: 0.7rem;
+  padding: 0.8rem;
   background: #333;
   color: white;
   border: none;
@@ -135,8 +147,15 @@ form button:hover {
 }
 #formMessage {
   margin-top: 1rem;
-  color: green;
+  font-weight: bold;
+  opacity: 0;
+  transform: translateY(10px);
+  transition: opacity 0.5s ease, transform 0.5s ease;
   text-align: center;
+}
+#formMessage.visible {
+  opacity: 1;
+  transform: translateY(0);
 }
 
 /* Footer */
@@ -144,15 +163,31 @@ footer {
   background: #111;
   color: #fff;
   padding: 2rem 1rem;
-  text-align: center;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 1rem;
+}
+footer .social-icons {
+  display: flex;
+  gap: 1rem;
 }
 footer .social-icons a {
   color: #fff;
-  margin: 0 0.5rem;
   font-size: 1.5rem;
 }
 footer .social-icons a:hover {
   color: #ccc;
+}
+footer p {
+  margin: 0;
+}
+@media (min-width: 600px) {
+  footer {
+    flex-direction: row;
+    justify-content: space-between;
+    padding: 1.5rem 3rem;
+  }
 }
 
 /* Scroll-to-top */
@@ -161,7 +196,7 @@ footer .social-icons a:hover {
   bottom: 30px;
   right: 30px;
   display: none;
-  background: #333;
+  background: #007bff;
   color: white;
   border: none;
   padding: 0.7rem;
@@ -169,9 +204,10 @@ footer .social-icons a:hover {
   border-radius: 50%;
   cursor: pointer;
   z-index: 1000;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3);
 }
 #scrollTopBtn:hover {
-  background: #555;
+  background: #0056b3;
 }
 
 /* Modal */
@@ -217,7 +253,6 @@ footer .social-icons a:hover {
     align-items: flex-start;
   }
   nav a {
-    margin-left: 0;
-    margin-right: 1rem;
+    margin: 0.5rem 0;
   }
 }
